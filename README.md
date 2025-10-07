@@ -1,7 +1,7 @@
 # Quantik - Personal Finance App
 
 Quantik is a **full-stack personal finance management application**.  
-It provides tools to track **incomes, expenses, invoices, clients, products, and reports**, helping individuals and businesses manage their financial workflow.
+It helps individuals and businesses manage their **incomes, expenses, invoices, clients, products, and reports** with an intuitive dashboard and PDF export support.
 
 ---
 
@@ -12,6 +12,7 @@ It provides tools to track **incomes, expenses, invoices, clients, products, and
 - Dashboard with balance and statistics
 - PDF export for invoices
 - REST API + React frontend integration
+- Modern responsive UI
 
 ---
 
@@ -25,7 +26,7 @@ It provides tools to track **incomes, expenses, invoices, clients, products, and
 - Maven
 
 ### Frontend
-- React 18 
+- React 18
 - React Router DOM
 - Axios
 - jsPDF + jspdf-autotable
@@ -36,33 +37,38 @@ It provides tools to track **incomes, expenses, invoices, clients, products, and
 ## ⚙️ Installation
 
 ### Backend
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Colin252/quantik-backend.git
-   cd quantik-backend
-   
-2.Configure database in src/main/resources/application.properties:
+```bash
+# Clone backend
+git clone https://github.com/Colin252/quantik-backend.git
+cd quantik-backend
+
+# Configure DB in src/main/resources/application.properties
 spring.datasource.url=jdbc:mysql://localhost:3306/quantik_db
 spring.datasource.username=root
 spring.datasource.password=your_password
 
-3.Run the backend:
+# Run backend
 ./mvnw spring-boot:run
-License
+# Clone frontend
+git clone https://github.com/Colin252/quantik-frontend.git
+cd quantik-frontend
 
-This project is licensed under the MIT License.
+# Install dependencies
+npm install
 
----
+# Start development server
+npm start
 
-✅ Ahora sí se ve **profesional, ordenado y sin errores de formato**.  
-Puedes hacer:  
+🌍 Access
 
-```bash
-git add README.md
-git commit -m "Fix backend README format"
-git push origin main
+Backend: http://localhost:8080
 
+Frontend: http://localhost:3000
 
+📌 Author
+
+Developed by Helton Emerson Quiroz Lopez
+Full Stack Developer | Java + Spring Boot + React.js
 
 
 
