@@ -1,60 +1,68 @@
-# 🚀 TreeBars Backend – Spring Boot API for Fitness App
+# Quantik - Personal Finance App
 
-This is the backend of **TreeBars**, a full stack fitness application. It provides secure RESTful APIs for user authentication, workout routine management, and muscle zone tracking. Built with Java 17 and Spring Boot 3, it includes JWT-based security and full MySQL database integration.
-
----
-
-## ✅ Features
-
-- 🔐 User registration and login with JWT token
-- Role-based authorization (`ROLE_USER`, `ROLE_ADMIN`)
-- Password encryption with BCrypt
-- Full CRUD for workout routines
-- Assign exercises to routines by day and muscle group
-- Protect API endpoints with token verification
-- Connection with React frontend via Axios
-- CORS configured for production (Render frontend)
+Quantik is a **full-stack personal finance management application**.  
+It provides tools to track **incomes, expenses, invoices, clients, products, and reports**, helping individuals and businesses manage their financial workflow.
 
 ---
 
-## 🛠 Technologies Used
+## 🚀 Features
+- User registration & login (JWT authentication)
+- Manage clients, providers, products, and invoices
+- Record income, expenses, and transactions
+- Dashboard with balance and statistics
+- PDF export for invoices
+- REST API + React frontend integration
 
+---
+
+## 🛠️ Tech Stack
+
+### Backend
 - Java 17
 - Spring Boot 3
-- Spring Security
-- JWT (JSON Web Token)
-- MySQL + JPA + Hibernate
+- Spring Security + JWT
+- MySQL
 - Maven
-- Render (for deployment)
+
+### Frontend
+- React 18 
+- React Router DOM
+- Axios
+- jsPDF + jspdf-autotable
+- CSS3
 
 ---
 
-## 🔗 Live Backend API
+## ⚙️ Installation
 
-- 🌐 [Backend API on Render](https://treebars-backend-666.onrender.com)
-
-- 🔗 Frontend: [`treebars-frontend`](https://github.com/Colin252/treebars-frontend)
-
----
-
-## ⚙️ How to Run Locally
-
-1. Clone this repository:
-```bash
-2.Configure your application.properties file with your MySQL credentials:
-
-git clone https://github.com/Colin252/treebars-backend.git
-spring.datasource.url=jdbc:mysql://localhost:3306/treebars
-spring.datasource.username=your_user
+### Backend
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Colin252/quantik-backend.git
+   cd quantik-backend
+   
+2.Configure database in src/main/resources/application.properties:
+spring.datasource.url=jdbc:mysql://localhost:3306/quantik_db
+spring.datasource.username=root
 spring.datasource.password=your_password
 
-3../mvnw spring-boot:run
+3.Run the backend:
+./mvnw spring-boot:run
+License
 
-👨‍💻 Developed by
-Helton Emerson Quiroz López
-📧 heltonquiroz@gmail.com
-📱 +506 61730792 | 🇨🇷 Costa Rica
-Full Stack Developer – Java & React
+This project is licensed under the MIT License.
+
+---
+
+✅ Ahora sí se ve **profesional, ordenado y sin errores de formato**.  
+Puedes hacer:  
+
+```bash
+git add README.md
+git commit -m "Fix backend README format"
+git push origin main
+
+
 
 
 
