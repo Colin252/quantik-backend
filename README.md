@@ -1,160 +1,186 @@
-⚙️ Quantik Backend – Spring Boot Cloud API
+# ⚙️ Quantik Backend – Cloud-Ready Spring Boot API
 
-Quantik Backend is the core API of the Quantik full-stack financial management platform.
-It provides secure REST endpoints for user authentication, accounting operations, and data management.
-The backend is fully developed in Spring Boot 3, with MySQL as the primary database, and deployed on a Google Cloud VM.
+**Quantik Backend** is the secure, scalable API powering the full-stack **Quantik** financial management platform.  
+It provides REST endpoints for authentication, accounting, and financial analytics — built entirely with **Spring Boot 3**, **Java 17**, and **MySQL 8**, and deployed on **AWS EC2** under the official domain **quantik.athenia-demo.art**.
 
-🌎 Deployment & Cloud Infrastructure
-Environment	Platform	Description
-Backend – Production	Google Cloud Compute Engine
-	Spring Boot + MySQL running on Ubuntu 22.04 (port 8080)
-Backend – Secondary	Render (PaaS)	Used for HTTPS/CORS proxy testing
-Frontend Connection	Vercel Frontend
-	React app consuming Quantik’s REST API
-CI/CD Integration	GitHub Actions	Automated build & deploy from main branch
+---
 
-☁️ The backend is hosted on a Google Cloud VM, configured manually with:
+## 🌎 Cloud Deployment Overview
 
-Java 17 + Maven 3.6.3
+| Environment | Platform | Description |
+|--------------|-----------|--------------|
+| **Backend – Production** | **AWS EC2 (Amazon Linux 2023)** | Running Spring Boot + MySQL on port **8080** |
+| **Frontend – Live Domain** | **https://quantik.athenia-demo.art** | React app consuming the Quantik REST API |
+| **Backend – Secondary** | Google Cloud VM (Ubuntu 22.04) | Used for Spark-based analytics and CI/CD redundancy |
+| **CI/CD Integration** | GitHub Actions | Automated build, test, and deploy from the `main` branch |
 
-MySQL 8 with secure credentials
+☁️ Cloud setup includes:
+- OpenJDK 17 + Maven 3.9.x  
+- MySQL 8 with secured credentials  
+- Apache Spark environment pre-configured  
+- Persistent runtime via `systemctl` and `nohup`  
+- Firewall rules for `8080` access  
+- HTTPS CORS configuration for `quantik.athenia-demo.art`
 
-Firewall rules for port 8080
+---
 
-Systemd service for persistent backend runtime
+## 🧩 Tech Stack
 
-🧩 Tech Stack
-Category	Technologies
-Language	Java 17
-Framework	Spring Boot 3
-Security	Spring Security 6 + JWT Authentication
-Database	MySQL 8
-ORM	Hibernate / JPA
-Build Tool	Maven
-Cloud Host	Google Cloud VM (Compute Engine)
-Version Control	GitHub
-CI/CD	GitHub Actions + SSH deployment
-Documentation	Postman / OpenAPI (Swagger-ready)
-🔐 Main Features
+| Category | Technologies |
+|-----------|---------------|
+| **Language** | Java 17 |
+| **Framework** | Spring Boot 3 |
+| **Security** | Spring Security 6 + JWT Authentication |
+| **Database** | MySQL 8 |
+| **ORM** | Hibernate / JPA |
+| **Build Tool** | Maven |
+| **Cloud Providers** | AWS EC2 + Google Cloud VM |
+| **Big Data** | Apache Spark |
+| **Version Control** | Git + GitHub |
+| **CI/CD** | GitHub Actions |
+| **Testing** | JUnit 5, Mockito, TestNG |
+| **Docs** | Postman + OpenAPI (Swagger-ready) |
 
-🔑 JWT Authentication: Secure login & registration endpoints with token-based access
+---
 
-👥 User Management: CRUD for users with roles (Admin/User)
+## 🔐 Main Features
 
-💼 Financial Modules: Entities for clients, suppliers, products, invoices, and transactions
+- 🔑 **JWT Authentication** – Secure login & registration endpoints  
+- 👥 **User Management** – CRUD operations with role-based access  
+- 💼 **Financial Modules** – Clients, suppliers, invoices, and transactions  
+- 💾 **MySQL Integration** – Persistent storage using Hibernate/JPA  
+- ⚙️ **RESTful Architecture** – Clean and modular endpoint design  
+- 🌐 **CORS Configured** – Fully authorized for `https://quantik.athenia-demo.art`  
+- 🧠 **Spark Ready** – Prepared for large-scale data analytics integration  
+- 🧱 **Exception Handling** – Predictable and structured API responses  
+- 🔁 **CI/CD Ready** – Automated pipeline using GitHub Actions  
 
-💾 MySQL Integration: Real data persistence with custom repositories
+---
 
-⚙️ RESTful API Architecture: Clean endpoints integrated with React frontend
+## 🧠 System Architecture Overview
 
-🌐 CORS Configuration: Fully open CORS for localhost 3000 & Vercel domains
++----------------------------------------+
+| React Frontend (AWS Domain) |
+| https://quantik.athenia-demo.art |
++------------------+---------------------+
+|
+| HTTPS / Axios
+v
++----------------------------------------+
+| Spring Boot Backend (AWS EC2) |
+| - JWT Authentication & Security |
+| - Financial CRUD Modules |
+| - CI/CD + Monitoring via GitHub |
++------------------+---------------------+
+|
+v
++----------------------------------------+
+| MySQL 8 Database (AWS) |
+| Persistent data layer + JPA ORM |
++----------------------------------------+
 
-🧱 Exception Handling & Validation: Custom error responses for API stability
+pgsql
+Copiar código
 
-🔁 CI/CD Ready: Maven build pipeline integrated with GitHub workflows
+---
 
-🧠 System Architecture Overview
-+--------------------------+
-|        React (Vercel)    |
-|   quantik-frontend.vercel.app  |
-+-----------+--------------+
-            |
-            |  HTTPS / Axios requests
-            v
-+--------------------------+
-|    Spring Boot Backend   |  (Google Cloud VM)
-| - Authentication (JWT)   |
-| - CRUD Modules (Finance) |
-| - Business Logic Layer   |
-+-----------+--------------+
-            |
-            v
-+--------------------------+
-|        MySQL 8 DB        |
-|   Hosted in Google Cloud |
-+--------------------------+
+## 🧪 API Endpoints Summary
 
-🧪 Endpoints Summary
-Method	Endpoint	Description
-POST	/api/login	Authenticate user and generate JWT token
-POST	/api/register	Register new user
-GET	/api/users	List all users (admin role)
-POST	/api/routines	Create new accounting record or routine
-GET	/api/routines	Fetch all records
-DELETE	/api/routines/{id}	Delete record by ID
+| Method | Endpoint | Description |
+|--------|-----------|--------------|
+| **POST** | `/api/auth/login` | Authenticate user & generate JWT |
+| **POST** | `/api/auth/register` | Register a new user |
+| **GET** | `/api/users` | List all users (Admin role only) |
+| **POST** | `/api/transactions` | Create new financial record |
+| **GET** | `/api/transactions` | Fetch all transactions |
+| **DELETE** | `/api/transactions/{id}` | Delete record by ID |
 
-All endpoints are secured using JWT Authentication and tested through Postman.
+🔐 All endpoints secured with **JWT authentication**  
+✅ Tested via **Postman** & **frontend integration**  
 
-⚙️ Installation (Local Development)
-# Clone the repository
+---
+
+## ⚙️ Local Development Setup
+
+```bash
+# Clone repository
 git clone https://github.com/Colin252/quantik-backend.git
 cd quantik-backend
 
-# Build the project
+# Build project
 ./mvnw clean install
 
-# Run the backend
+# Run backend locally
 ./mvnw spring-boot:run
+🖥 Default local URL: http://localhost:8080
+🗄 Database: quantik_db (MySQL 8)
 
+🚀 Cloud Deployment (AWS EC2)
+SSH into EC2
 
-Default server: http://localhost:8080
-Database: quantik_db (MySQL 8)
+bash
+Copiar código
+ssh -i "quantik-key.pem" ec2-user@3.149.126.92
+Clone & Build
 
-🚀 Cloud Deployment
+bash
+Copiar código
+git clone https://github.com/Colin252/quantik-backend.git
+cd quantik-backend
+./mvnw clean package
+Run the Backend
 
-Google Cloud VM Setup Steps:
+bash
+Copiar código
+nohup java -jar target/quantik-backend-1.0.jar &
+Monitor Logs
 
-Create a VM instance with Ubuntu 22.04
+bash
+Copiar código
+tail -f server.log
+Access via Browser or API
 
-Install OpenJDK 17, Maven, and MySQL 8
+arduino
+Copiar código
+http://3.149.126.92:8080/api
+✅ Backend runs persistently via systemctl
+✅ Deployed through GitHub Actions authenticated with PAT
 
-Clone the repository from GitHub
+🧠 Testing & CI/CD
+Tool	Purpose
+JUnit 5 / Mockito / TestNG	Unit & integration testing
+GitHub Actions	Automated builds & tests
+Postman / Swagger	API endpoint validation
+AWS EC2 Logs	Runtime monitoring & debugging
 
-Build and start with nohup java -jar target/quantik-backend-1.0.jar &
+💡 Achievements
+🌩️ Full-stack deployment across AWS + custom domain
 
-Configure firewall: open port 8080
+🔐 Secure authentication with Spring Security + JWT
 
-Verify API availability via browser or Postman
+⚡ Spark-enabled backend for analytics scalability
 
-✅ Backend runs continuously via systemctl process manager for stability.
+🔁 CI/CD pipeline with GitHub Actions + Maven
 
-💡 What I Learned
+🧪 Comprehensive testing with JUnit & Mockito
 
-Cloud deployment on Google Cloud Compute Engine
-
-CI/CD pipeline configuration with GitHub Actions
-
-Full-stack integration between React (Vercel) and Spring Boot (GCP)
-
-Secure authentication using Spring Security + JWT
-
-Database configuration and troubleshooting on Linux servers
-
-Real-world debugging of CORS & HTTPS challenges
+🧭 End-to-end integration with React frontend
 
 🧭 Next Steps & Roadmap
+Integrate Apache Spark analytics jobs
 
-Integrate Apache Spark for large-scale financial analytics
+Add Docker + Kubernetes deployment for scaling
 
-Implement microservices architecture with Docker & Kubernetes
+Expose Swagger UI documentation endpoint
 
-Add unit & integration tests with JUnit 5 and Mockito
+Implement multi-region redundancy (AWS + GCP)
 
-Deploy backend to Render for multi-region redundancy
-
-Add Swagger UI documentation endpoint
+Migrate database to RDS / Cloud SQL for high availability
 
 👤 Author
-
 Helton Emerson Quiroz López
 Full Stack Java + React Developer
 
-📧 heltonquiroz.dev@gmail.com
-
-🌐 LinkedIn 
-https://quantik-frontend.vercel.app/
-
-💻 Frontend Repository
-
-
-
+📧 heltonquiroz@gmail.com
+🌐 Quantik Frontend (Live)
+🐙 GitHub Profile
